@@ -443,7 +443,7 @@ def main(username):
         os.path.join(os.path.dirname(__file__), "resources/data.json")
     )
     site_data = {site.name: site.information for site in sites}
-    query_notify = QueryNotifyPrint(result=None)
+    query_notify = QueryNotifyPrint()
     sherlock(
         username,
         site_data,
