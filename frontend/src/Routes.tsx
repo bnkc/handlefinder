@@ -11,8 +11,6 @@ const Loadable = (Component) => (props) =>
 
 
 
-
-
 const Landing = Loadable(lazy(() => import("./views/Landing")));
 
 const routes: any = [
