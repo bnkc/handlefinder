@@ -1,4 +1,6 @@
-from result import QueryStatus
+from .result import QueryStatus
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import asyncio
 
 
 class QueryNotifyPrint:
@@ -17,6 +19,4 @@ class QueryNotifyPrint:
     def update(self, result):
         """Notify Update."""
         if result.status == QueryStatus.CLAIMED:
-            print({"site": result.site_name, "url": result.site_url_user})
-
-        return
+            return result.site_name

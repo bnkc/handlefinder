@@ -1,5 +1,4 @@
 #! /usr/bin/env python3
-
 """
 Sherlock: Find Usernames Across Social Networks Module
 
@@ -7,25 +6,19 @@ This module contains the main logic to search for usernames at social
 networks.
 """
 
-import csv
-import signal
-import pandas as pd
+
 import os
-import platform
 import re
-import sys
-from argparse import ArgumentParser, RawDescriptionHelpFormatter
 from time import monotonic
+import multiprocessing as mp
 
 import requests
-
+from .notify import QueryNotifyPrint
 from requests_futures.sessions import FuturesSession
-from torrequest import TorRequest
-from result import QueryStatus
-from result import QueryResult
-from notify import QueryNotifyPrint
-from sites import SitesInformation
-from colorama import init
+from .result import QueryResult, QueryStatus
+from .sites import SitesInformation
+from app.schemas import Handles
+from fastapi.encoders import jsonable_encoder
 
 module_name = "Sherlock: Find Usernames Across Social Networks"
 __version__ = "0.14.2"
@@ -160,6 +153,7 @@ def MultipleUsernames(username):
 
 
 def sherlock(
+    q: mp.Queue,
     username,
     site_data,
     query_notify,
@@ -301,7 +295,6 @@ def sherlock(
                 allow_redirects = True
 
             # This future starts running the request in a new thread, doesn't block the main thread
-
             future = request(
                 url=url_probe,
                 headers=headers,
@@ -423,33 +416,28 @@ def sherlock(
             query_time=response_time,
             context=error_context,
         )
-        query_notify.update(result)
-
-        # Save status of request
-        results_site["status"] = result
-
-        # Save results from request
-        results_site["http_status"] = http_status
-        results_site["response_text"] = response_text
-
-        # Add this site's results into final dictionary with all of the other results.
-        results_total[social_network] = results_site
-
-    return results_total
+        if result.status == QueryStatus.CLAIMED:
+            handle_results = Handles(
+                site=result.site_name,
+                url=result.site_url_user,
+            )
+            q.put(jsonable_encoder(handle_results))
 
 
-def main(username):
+def main(q: mp.Queue, username: str):
     sites = SitesInformation(
         os.path.join(os.path.dirname(__file__), "resources/data.json")
     )
     site_data = {site.name: site.information for site in sites}
     query_notify = QueryNotifyPrint()
     sherlock(
+        q,
         username,
         site_data,
         query_notify,
     )
 
 
-if __name__ == "__main__":
-    main("jeffrey10")
+# if __name__ == "__main__":
+#     results = main("jeffrey101")
+#     print(results)

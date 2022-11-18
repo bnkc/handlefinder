@@ -1,6 +1,6 @@
 from typing import Any
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, WebSocket
 from fastapi.responses import FileResponse
 from app.core import settings
 from fastapi.staticfiles import StaticFiles
@@ -19,6 +19,7 @@ if settings.BACKEND_CORS_ORIGINS:
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
+        allow_websockets=True,
     )
 
 

@@ -6,9 +6,18 @@ This is the raw data that will be used to search for usernames.
 import json
 import requests
 
+
 class SiteInformation:
-    def __init__(self, name, url_home, url_username_format, username_claimed,
-                 username_unclaimed, information, is_nsfw):
+    def __init__(
+        self,
+        name,
+        url_home,
+        url_username_format,
+        username_claimed,
+        username_unclaimed,
+        information,
+        is_nsfw,
+    ):
         """Create Site Information Object.
 
         Contains information about a specific website.
@@ -52,7 +61,7 @@ class SiteInformation:
         self.username_claimed = username_claimed
         self.username_unclaimed = username_unclaimed
         self.information = information
-        self.is_nsfw  = is_nsfw
+        self.is_nsfw = is_nsfw
 
         return
 
@@ -65,7 +74,7 @@ class SiteInformation:
         Return Value:
         Nicely formatted string to get information about this object.
         """
-        
+
         return f"{self.name} ({self.url_home})"
 
 
@@ -112,7 +121,9 @@ class SitesInformation:
 
         # Ensure that specified data file has correct extension.
         if not data_file_path.lower().endswith(".json"):
-            raise FileNotFoundError(f"Incorrect JSON file extension for data file '{data_file_path}'.")
+            raise FileNotFoundError(
+                f"Incorrect JSON file extension for data file '{data_file_path}'."
+            )
 
         # if "http://"  == data_file_path[:7].lower() or "https://" == data_file_path[:8].lower():
         if data_file_path.lower().startswith("http"):
@@ -125,9 +136,10 @@ class SitesInformation:
                 )
 
             if response.status_code != 200:
-                raise FileNotFoundError(f"Bad response while accessing "
-                                        f"data file URL '{data_file_path}'."
-                                        )
+                raise FileNotFoundError(
+                    f"Bad response while accessing "
+                    f"data file URL '{data_file_path}'."
+                )
             try:
                 site_data = response.json()
             except Exception as error:
@@ -147,9 +159,10 @@ class SitesInformation:
                         )
 
             except FileNotFoundError:
-                raise FileNotFoundError(f"Problem while attempting to access "
-                                        f"data file '{data_file_path}'."
-                                        )
+                raise FileNotFoundError(
+                    f"Problem while attempting to access "
+                    f"data file '{data_file_path}'."
+                )
 
         self.sites = {}
 
@@ -157,16 +170,15 @@ class SitesInformation:
         for site_name in site_data:
             try:
 
-                self.sites[site_name] = \
-                    SiteInformation(site_name,
-                                    site_data[site_name]["urlMain"],
-                                    site_data[site_name]["url"],
-                                    site_data[site_name]["username_claimed"],
-                                    site_data[site_name]["username_unclaimed"],
-                                    site_data[site_name],
-                                    site_data[site_name].get("isNSFW",False)
-
-                                    )
+                self.sites[site_name] = SiteInformation(
+                    site_name,
+                    site_data[site_name]["urlMain"],
+                    site_data[site_name]["url"],
+                    site_data[site_name]["username_claimed"],
+                    site_data[site_name]["username_unclaimed"],
+                    site_data[site_name],
+                    site_data[site_name].get("isNSFW", False),
+                )
             except KeyError as error:
                 raise ValueError(
                     f"Problem parsing json contents at '{data_file_path}':  Missing attribute {error}."
@@ -188,8 +200,8 @@ class SitesInformation:
         for site in self.sites:
             if self.sites[site].is_nsfw:
                 continue
-            sites[site] = self.sites[site]  
-        self.sites =  sites
+            sites[site] = self.sites[site]
+        self.sites = sites
 
     def site_name_list(self):
         """Get Site Name List.
