@@ -69,7 +69,7 @@ const Landing: React.FC = () => {
         setDisabled(true);
         // const url = new WebSocket(`ws://localhost:8000/api/v1/handles/${values.username}`);
         //now use the render url
-        const url = new WebSocket(`wss://handlefinder.com/api/v1/handles/${values.username}`);
+        const url = new WebSocket(`wss://handlefinder-backend:10000/api/v1/handles/${values.username}`);
         // now use wss for the www.handlefinder.com for the socket connection
         // const url = new WebSocket(`ws://handlefinder-backend:10000/api/v1/handles/${values.username}`);
 
