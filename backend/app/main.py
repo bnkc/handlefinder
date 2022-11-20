@@ -8,7 +8,7 @@ from fastapi.templating import Jinja2Templates
 from app.api.api import api_router
 from starlette.middleware.cors import CORSMiddleware
 
-templates_dir = "..frontend/build"
+templates_dir = "../frontend/build"
 static_dir = "../frontend/build/static"
 
 openapi_url = f"{settings.API_V1_STR}/openapi.json"
@@ -24,13 +24,11 @@ if settings.BACKEND_CORS_ORIGINS:
         allow_websockets=True,
     )
 
-
+app.mount("/static/", StaticFiles(directory=static_dir), name="static")
 app.include_router(api_router, prefix=settings.API_V1_STR)
-
-app.mount("/static", StaticFiles(directory=static_dir), name="static")
 templates = Jinja2Templates(directory=templates_dir)
 
 
-@app.get("/")
-async def main(request: Request):
+@app.get("/{full_path:path}", response_class=FileResponse, tags=["frontend"])
+async def home(request: Request, full_path: str) -> Any:
     return templates.TemplateResponse("index.html", {"request": request})
