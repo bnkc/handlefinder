@@ -67,13 +67,11 @@ const Landing: React.FC = () => {
     const onSubmit = (values) => {
         setWebsites([])
         setDisabled(true);
-        // const url = new WebSocket(`ws://handlefinder-backend:10000/api/v1/handles/${values.username}`);
-        //use the new websocket url
+        // const url = new WebSocket(`ws://localhost:8000/api/v1/handles/${values.username}`);
+        //now use the render url
         // const url = new WebSocket(`wss://handlefinder-backend.onrender.com/api/v1/handles/${values.username}`);
-        //use the new websocket url for Render
-        //run locally
-        // const url = new WebSocket(`ws://http://127.0.0.1:8000/api/v1/handles/${values.username}`);
-        const url = new WebSocket(`ws://localhost:8000/api/v1/handles/${values.username}`);
+        // now use wss for the www.handlefinder.com for the socket connection
+        const url = new WebSocket(`wss://www.handlefinder.com/api/v1/handles/${values.username}`);
 
         url.onopen = () => {
 
