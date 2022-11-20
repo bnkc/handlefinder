@@ -71,7 +71,10 @@ const Landing: React.FC = () => {
         //use the new websocket url
         // const url = new WebSocket(`wss://handlefinder-backend.onrender.com/api/v1/handles/${values.username}`);
         //use the new websocket url for Render
-        const url = new WebSocket(`/api/v1/handles/${values.username}`);
+        //run locally
+        // const url = new WebSocket(`ws://http://127.0.0.1:8000/api/v1/handles/${values.username}`);
+        const url = new WebSocket(`ws://localhost:8000/api/v1/handles/${values.username}`);
+
         url.onopen = () => {
 
             console.log("connected");
