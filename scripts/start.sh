@@ -2,4 +2,4 @@ cd backend/app
 
 
 cd ..
-uvicorn app.main:app --host
+hypercorn -b 0.0.0.0:${PORT} app.main:app 
