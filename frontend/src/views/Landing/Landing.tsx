@@ -71,7 +71,7 @@ const Landing: React.FC = () => {
         //use the new websocket url
         // const url = new WebSocket(`wss://handlefinder-backend.onrender.com/api/v1/handles/${values.username}`);
         //use the new websocket url for Render
-        const url = new WebSocket(`ws://handlefinder-backend.onrender.com/api/v1/handles/${values.username}`);
+        const url = new WebSocket(`wss://handlefinder-backend.onrender.com/api/v1/handles/`);
         url.onopen = () => {
 
             console.log("connected");
