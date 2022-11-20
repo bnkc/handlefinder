@@ -1,7 +1,7 @@
 previewsEnabled: true
 services:
   - type: web
-    name: handfinder-backend
+    name: handlefinder-backend
     repo: https://github.com/bnkc/handlefinder.git
     region: ohio
     env: python
