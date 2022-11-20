@@ -67,7 +67,9 @@ const Landing: React.FC = () => {
     const onSubmit = (values) => {
         setWebsites([])
         setDisabled(true);
-        const url = new WebSocket(`ws://handlefinder-backend:10000/api/v1/handles/${values.username}`);
+        // const url = new WebSocket(`ws://handlefinder-backend:10000/api/v1/handles/${values.username}`);
+        //use the new websocket url
+        const url = new WebSocket(`ws://localhost:10000/api/v1/handles/${values.username}`);
         url.onopen = () => {
 
             console.log("connected");
