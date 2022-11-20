@@ -1,0 +1,16 @@
+previewsEnabled: true
+services:
+  - type: web
+    name: handfinder-backend
+    repo: https://github.com/bnkc/handlefinder.git
+    region: ohio
+    env: python
+    plan: starter
+    numInstances: 1
+    buildCommand: pip install -r requirements.txt
+    startCommand: sh scripts/start.sh
+    healthCheckPath: /api/v1/test
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.6
+      - fromGroup: handlefinder-website
