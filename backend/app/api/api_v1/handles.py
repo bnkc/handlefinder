@@ -3,7 +3,7 @@ import asyncio
 from fastapi import APIRouter, WebSocket
 
 from app.sherlock import main
-
+from typing import Any
 import asyncio
 import multiprocessing as mp
 from concurrent.futures import ProcessPoolExecutor
