@@ -9,6 +9,8 @@ from app.api.api import api_router
 from starlette.middleware.cors import CORSMiddleware
 
 templates_dir = "..frontend/build"
+static_dir = "../frontend/build/static"
+
 openapi_url = f"{settings.API_V1_STR}/openapi.json"
 app = FastAPI(title=settings.PROJECT_NAME, openapi_url=openapi_url)
 
@@ -25,8 +27,8 @@ if settings.BACKEND_CORS_ORIGINS:
 
 app.include_router(api_router, prefix=settings.API_V1_STR)
 
-templates = Jinja2Templates(directory="app/templates")
-app.mount("/static", StaticFiles(directory=templates_dir), name="static")
+app.mount("/static", StaticFiles(directory=static_dir), name="static")
+templates = Jinja2Templates(directory=templates_dir)
 
 
 @app.get("/")
