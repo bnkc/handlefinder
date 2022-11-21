@@ -7,7 +7,6 @@ import { Formik } from 'formik';
 import SearchIcon from '@mui/icons-material/Search';
 import { Button } from '@mui/material';
 import * as Yup from 'yup';
-import { fontFamily, fontSize } from '@mui/system';
 
 const styles = {
     floatingLabelFocusStyle: {
@@ -65,7 +64,6 @@ const Landing: React.FC = () => {
     const [websites, setWebsites] = React.useState<Website[]>([]);
     const [disabled, setDisabled] = React.useState<boolean>(false);
     const onSubmit = (values) => {
-        <script defer data-domain="handlefinder.com" src="https://plausible.io/js/script.js"></script>
         setWebsites([])
         setDisabled(true);
         const url = new WebSocket(`wss://www.handlefinder.com/api/v1/handles/${values.username}`);
