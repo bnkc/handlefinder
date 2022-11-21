@@ -133,7 +133,7 @@ const Landing: React.FC = () => {
                                 }}
                                 sx={{
                                     position: 'relative',
-                                    width: '100%',
+                                    width: '90%',
                                     margin: '1rem 0',
                                     '& .MuiOutlinedInput-root': {
                                         '& fieldset': {
@@ -162,6 +162,7 @@ const Landing: React.FC = () => {
                                 variant="outlined"
 
                                 sx={{
+                                    width: '90%',
                                     borderColor: '#6699cc',
                                     backgroundColor: '#6699cc',
                                     color: '#d1dce6',

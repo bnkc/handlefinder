@@ -14,7 +14,7 @@ const Header = () => {
             alignItems={'center'}
         >
             <img src="https://avoidcheaters.fra1.digitaloceanspaces.com/Screenshot%202022-11-13%20at%208.20.04%20PM.png" alt="logo"
-                style={{ width: '40%', maxWidth: '600px', height: 'auto' }}
+                style={{ width: '150px', height: 'auto' }}
             />
             <br />
             <img src="https://avoidcheaters.fra1.digitaloceanspaces.com/Screenshot%202022-11-13%20at%208.20.21%20PM.png" alt="logo"
