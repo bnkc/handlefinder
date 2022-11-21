@@ -63,7 +63,9 @@ interface Website {
 const Landing: React.FC = () => {
     const [websites, setWebsites] = React.useState<Website[]>([]);
     const [disabled, setDisabled] = React.useState<boolean>(false);
+    const [username, setUsername] = React.useState<string>("");
     const onSubmit = (values) => {
+        setUsername(username => values.username);
         setWebsites([])
         setDisabled(true);
         const url = new WebSocket(`wss://www.handlefinder.com/api/v1/handles/${values.username}`);
@@ -152,8 +154,6 @@ const Landing: React.FC = () => {
                                 loading={disabled}
                                 loadingPosition="start"
                                 startIcon={<SearchIcon />}
-
-                                // isLoading={disabled}
                                 size="large"
                                 type="submit"
 
@@ -184,7 +184,7 @@ const Landing: React.FC = () => {
                                     color: '#99c794',
                                     paddingTop: '2rem',
                                 }}>
-                                    {Startbrackets} Checking username <a style={{ color: '#d1dce6' }}>{values.username}</a> on:
+                                    {Startbrackets} Checking username <a style={{ color: '#d1dce6' }}>{username}</a> on:
                                 </div>
                             }
                             <Box>
