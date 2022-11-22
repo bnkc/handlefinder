@@ -61,6 +61,9 @@ interface Website {
 }
 
 const Landing: React.FC = () => {
+    const openInNewTab = url => {
+        window.open(url, '_blank', 'noopener,noreferrer');
+    };
     const [websites, setWebsites] = React.useState<Website[]>([]);
     const [disabled, setDisabled] = React.useState<boolean>(false);
     const [username, setUsername] = React.useState<string>("");
@@ -196,7 +199,7 @@ const Landing: React.FC = () => {
                                             position: 'relative',
                                         }}>
                                             {brackets} {website.site}: <a style={{ color: '#d1dce6' }} href={website.url
-                                            }>{website.site}</a>
+                                            } target="_blank">{website.site}</a>
                                         </Typography>
                                     ))}
                                 </ul>
