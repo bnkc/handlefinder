@@ -12,15 +12,16 @@ from fastapi import WebSocket, WebSocketDisconnect
 router = APIRouter()
 
 
-@router.websocket("/")
+@router.websocket("/{username}")
 async def sherlock(websocket: WebSocket):
+    username = websocket.path_params["username"]
     await websocket.accept()
     try:
         while True:
             data = await websocket.receive_text()
             print(data)
             q = multiprocessing.Queue()
-            p = multiprocessing.Process(target=main, args=(data, q))
+            p = multiprocessing.Process(target=main, args=(q, username))
             p.start()
             while p.is_alive():
                 try:
