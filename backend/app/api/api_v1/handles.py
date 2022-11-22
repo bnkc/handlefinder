@@ -26,7 +26,7 @@ async def sherlock(websocket: WebSocket):
             while p.is_alive():
                 try:
                     result = q.get(timeout=1)
-                    await websocket.send_text(result)
+                    await websocket.send_json(result)
                 except Empty:
                     pass
             p.join()
