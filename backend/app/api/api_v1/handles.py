@@ -12,23 +12,30 @@ from fastapi import WebSocket, WebSocketDisconnect
 router = APIRouter()
 
 
-@router.websocket("/{username}")
-async def sherlock(websocket: WebSocket):
+@router.websocket_route("/{username}")
+async def handles(websocket: WebSocket):
     username = websocket.path_params["username"]
     await websocket.accept()
-    try:
-        while True:
-            data = await websocket.receive_text()
-            print(data)
-            q = multiprocessing.Queue()
-            p = multiprocessing.Process(target=main, args=(q, username))
-            p.start()
-            while p.is_alive():
-                try:
-                    result = q.get(timeout=1)
-                    await websocket.send_json(result)
-                except Empty:
-                    pass
-            p.join()
-    except WebSocketDisconnect:
-        await websocket.close()
+    q = multiprocessing.Queue()
+    p = multiprocessing.Process(target=main, args=(q, username))
+    p.start()
+    while True:
+        await asyncio.sleep(0)
+        try:
+            q_result = q.get(block=False)
+        except Empty:
+            q_result = None
+        if q_result:
+            try:
+                await websocket.send_json(q_result)
+            except WebSocketDisconnect:
+                p.terminate()
+                break
+        if not p.is_alive():
+            try:
+                await websocket.send_json(q_result)
+                await websocket.close()
+            except WebSocketDisconnect:
+                p.terminate()
+            finally:
+                break
