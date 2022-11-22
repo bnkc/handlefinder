@@ -25,8 +25,7 @@ It will be running on localhost ie `127.0.0.1`
 
 ### Starting API
 
-You will need to download the build of the frontend. To do this you'll need to install the aws cli and add your IAM credentials. As an alternative, an empty `frontend-build` folder in the root directory will allow the backend to start without crashing.
-
+You will need to download the build of the frontend. To do this, you will need to cd into frontend and npm install, npm run build, and npm start to run locally
 ```
 cd backend
 uvicorn app.main:app --reload
