@@ -19,8 +19,6 @@ $ pip install -r requirements.txt
 
 Create a virtual environment from the requirements.txt (or installed globally).
 
-If you're looking to run the test suite you'll need to install postgres locally. This is done to speed up tests.
-
 Then you can start your local server with.
 
 It will be running on localhost ie `127.0.0.1`
