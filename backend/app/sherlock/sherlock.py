@@ -417,18 +417,18 @@ def sherlock(
             context=error_context,
         )
         if result.status == QueryStatus.CLAIMED:
-            handle_results = Handles(
-                site=result.site_name,
-                url=result.site_url_user,
-            )
-            q.put(jsonable_encoder(handle_results))
+            q.put({"site": result.site_name, "url": result.site_url_user})
+
+    return results_total
 
 
 def main(q: mp.Queue, username: str):
     sites = SitesInformation(
         os.path.join(os.path.dirname(__file__), "resources/data.json")
     )
-    site_data = {site.name: site.information for site in sites}
+    # site_data = {site.name: site.information for site in sites}
+    # map site data instead of a for loop
+    site_data = map(lambda site: {site.name: site.information}, sites)
     query_notify = QueryNotifyPrint()
     sherlock(
         q,
