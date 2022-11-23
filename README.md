@@ -1,11 +1,9 @@
-<p align="center">
 # handlefinder
 search handles across hundreds of social networks
 
 <em>This app is a wrapper around The Sherlock Project</em>
-
+<p align="center">
 <img src="https://avoidcheaters.fra1.digitaloceanspaces.com/Screenshot%202022-11-23%20at%208.32.37%20AM.png" width="400">
-
 </p>
 ## Backend Requirement
 - Python >= 3.9.0
