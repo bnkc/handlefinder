@@ -1,7 +1,10 @@
 # handlefinder
 search handles across hundreds of social networks
 
-This app is a wrapper around The Sherlock Project
+~This app is a wrapper around The Sherlock Project~
+
+[![Example](https://avoidcheaters.fra1.digitaloceanspaces.com/Screenshot%202022-11-23%20at%208.32.37%20AM.png)]
+
 ## Backend Requirement
 - Python >= 3.9.0
 - Linux / MacOS _(not tested on Windows)_
@@ -20,7 +23,7 @@ Then you can start your local server with `uvicorn app.main:app`
 
 It will be running on localhost ie `127.0.0.1`
 
-### Fronend Rquirements
+### Frontend Rquirements
 
 - Node.js (with `npm`)
 
