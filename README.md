@@ -3,7 +3,9 @@ search handles across hundreds of social networks
 
 ~This app is a wrapper around The Sherlock Project
 
-![](https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png | width=100)
+[![Build Status](https://avoidcheaters.fra1.digitaloceanspaces.com/Screenshot%202022-11-23%20at%208.32.37%20AM.png)]
+<img src="https://avoidcheaters.fra1.digitaloceanspaces.com/Screenshot%202022-11-23%20at%208.32.37%20AM.png" width="48">
+
 
 ## Backend Requirement
 - Python >= 3.9.0
