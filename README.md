@@ -1,6 +1,7 @@
 # handlefinder
 search handles across hundreds of social networks
-'This app is a wrapper around The Sherlock Project'
+
+This app is a wrapper around The Sherlock Project
 ## 1. Backend local development
 
 ### Requirements
@@ -20,7 +21,7 @@ $ pip install -r requirements.txt
 
 Create a virtual environment from the requirements.txt (or installed globally).
 
-Then you can start your local server with 'uvicorn app.main:app'
+Then you can start your local server with `uvicorn app.main:app`
 
 It will be running on localhost ie `127.0.0.1`
 
