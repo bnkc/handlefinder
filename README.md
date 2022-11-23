@@ -1,5 +1,6 @@
 # handlefinder
 search handles across hundreds of social networks
+'This app is a wrapper around The Sherlock Project'
 ## 1. Backend local development
 
 ### Requirements
