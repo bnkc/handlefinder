@@ -1,7 +1,7 @@
 # handlefinder
 search handles across hundreds of social networks
 
-This app is a wrapper around <em>The Sherlock Project</em>
+This app is a wrapper around [The Sherlock Project](https://github.com/sherlock-project/sherlock)
 
 <img src="https://avoidcheaters.fra1.digitaloceanspaces.com/Screenshot%202022-11-23%20at%208.32.37%20AM.png" width="400">
 
